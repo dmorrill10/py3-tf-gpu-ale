@@ -33,7 +33,7 @@ From: tensorflow/tensorflow:1.5.0-gpu-py3
   pip3 install numpy tqdm
 
   wget https://github.com/mgbellemare/Arcade-Learning-Environment/archive/v0.6.0.zip
-  unzip Arcade-Learning-Environment-0.6.0.zip
+  unzip 0.6.0.zip
   cd Arcade-Learning-Environment-0.6.0
   rm -rf build
   mkdir build
