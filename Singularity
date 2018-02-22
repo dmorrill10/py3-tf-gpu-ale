@@ -28,7 +28,7 @@ To install python libraries after this image is built, create a virtual environm
   mkdir -p /scratch /data /usr/bin
 
   apt-get update
-  apt-get install -y cmake libcupti-dev libyaml-dev wget unzip locales openssl libssl-dev
+  apt-get install -y cmake libcupti-dev libyaml-dev wget unzip locales
   apt-get clean
   locale-gen en_US.UTF-8
 
