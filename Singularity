@@ -9,9 +9,6 @@ From: tensorflow/tensorflow:1.5.0-gpu-py3
 %setup
   # runs on host - the path to the image is $SINGULARITY_ROOTFS
 
-%files
-  /workspace/Arcade-Learning-Environment Arcade-Learning-Environment
-
 %post
   # post-setup script
 
