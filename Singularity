@@ -1,0 +1,52 @@
+Bootstrap: docker
+From: tensorflow/tensorflow:1.5.0-gpu-py3
+
+%environment
+  # use bash as default shell
+  SHELL=/bin/bash
+  export SHELL
+
+%setup
+  # runs on host - the path to the image is $SINGULARITY_ROOTFS
+
+%files
+  /workspace/Arcade-Learning-Environment Arcade-Learning-Environment
+
+%post
+  # post-setup script
+
+  # load environment variables
+  . /environment
+
+  # use bash as default shell
+  echo 'SHELL=/bin/bash' >> /environment
+  chmod +x /environment
+
+  # default mount paths
+  mkdir -p /scratch /data /usr/bin
+
+  apt-get update
+  apt-get install -y cmake libcupti-dev libyaml-dev wget git
+  apt-get clean
+
+  pip3 install --upgrade pip
+  pip3 install numpy tqdm
+  
+  git clone git@github.com:mgbellemare/Arcade-Learning-Environment.git
+  cd Arcade-Learning-Environment
+  rm -rf build
+  mkdir build
+  cd build
+  cmake -DUSE_SDL=OFF -DUSE_RLGLUE=OFF -DBUILD_EXAMPLES=OFF ..
+  make -j 4
+
+  cd ../
+  pip3 install .
+
+%runscript
+  # executes with the singularity run command
+  # delete this section to use existing docker ENTRYPOINT command
+  
+%test
+  # test that script is a success
+  
