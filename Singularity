@@ -26,14 +26,15 @@ From: tensorflow/tensorflow:1.5.0-gpu-py3
   mkdir -p /scratch /data /usr/bin
 
   apt-get update
-  apt-get install -y cmake libcupti-dev libyaml-dev wget git
+  apt-get install -y cmake libcupti-dev libyaml-dev wget unzip
   apt-get clean
 
   pip3 install --upgrade pip
   pip3 install numpy tqdm
-  
-  git clone git@github.com:mgbellemare/Arcade-Learning-Environment.git
-  cd Arcade-Learning-Environment
+
+  wget https://github.com/mgbellemare/Arcade-Learning-Environment/archive/v0.6.0.zip
+  unzip Arcade-Learning-Environment-0.6.0.zip
+  cd Arcade-Learning-Environment-0.6.0
   rm -rf build
   mkdir build
   cd build
@@ -46,7 +47,6 @@ From: tensorflow/tensorflow:1.5.0-gpu-py3
 %runscript
   # executes with the singularity run command
   # delete this section to use existing docker ENTRYPOINT command
-  
+
 %test
   # test that script is a success
-  
