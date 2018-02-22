@@ -1,6 +1,11 @@
 Bootstrap: docker
 From: tensorflow/tensorflow:1.5.0-gpu-py3
 
+%help
+
+To install python libraries after this image is built, create a virtual environment that uses the system packages with `virtualenv --system-site-packages venv && source venv/bin/activate`, then use `pip` as usual.
+
+
 %environment
   # use bash as default shell
   SHELL=/bin/bash
@@ -23,11 +28,12 @@ From: tensorflow/tensorflow:1.5.0-gpu-py3
   mkdir -p /scratch /data /usr/bin
 
   apt-get update
-  apt-get install -y cmake libcupti-dev libyaml-dev wget unzip
+  apt-get install -y cmake libcupti-dev libyaml-dev wget unzip locales openssl libssl-dev
   apt-get clean
+  locale-gen en_US.UTF-8
 
   pip3 install --upgrade pip
-  pip3 install numpy tqdm
+  pip3 install numpy tqdm virtualenv
 
   wget https://github.com/mgbellemare/Arcade-Learning-Environment/archive/v0.6.0.zip
   unzip v0.6.0.zip
